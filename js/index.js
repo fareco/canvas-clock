@@ -26,7 +26,7 @@ window.onload = function() {
 		ctx.translate(canvas.width / 2, canvas.height / 2);
 		ctx.beginPath();
 
-		//drawNum
+		//drawNum  
 		ctx.font = '32px Arial';
 		ctx.fillStyle = '#000';
 		ctx.textAlign = 'center';
@@ -37,7 +37,35 @@ window.onload = function() {
 			var x = clockRadius * 0.7 * Math.cos(angle);
 			var y = clockRadius * 0.7 * Math.sin(angle);
 			ctx.fillText(i, x, y);
+			ctx.beginPath();
 		}
+
+		//draw marks
+		ctx.save();
+		ctx.lineWidth = 4;
+		ctx.lineCap = "round";
+		for (var i = 1; i <= 12; i++) {
+			ctx.rotate(Math.PI / 6);
+			ctx.beginPath();
+			ctx.moveTo(clockRadius * 0.6, 0);
+			ctx.lineTo(clockRadius * 0.6 - 10, 0);
+			ctx.stroke();
+		}
+		ctx.restore();
+
+		ctx.save();
+		ctx.lineWidth = 2;
+
+		for (var i = 1; i <= 60; i++) {
+			ctx.rotate(Math.PI / 30);
+			if (i % 5 != 0) {
+				ctx.beginPath();
+				ctx.moveTo(clockRadius * 0.6, 0);
+				ctx.lineTo(clockRadius * 0.6 - 6, 0)
+				ctx.stroke();
+			}
+		}
+		ctx.restore();
 
 		//draw hour hand
 		ctx.save();
@@ -58,8 +86,8 @@ window.onload = function() {
 		ctx.beginPath();
 		ctx.moveTo(-15, -4);
 		ctx.lineTo(-15, 4);
-		ctx.lineTo(clockRadius * 0.6, 1);
-		ctx.lineTo(clockRadius * 0.6, -1);
+		ctx.lineTo(clockRadius * 0.5, 1);
+		ctx.lineTo(clockRadius * 0.5, -1);
 		ctx.fill()
 		ctx.restore();
 
@@ -70,9 +98,9 @@ window.onload = function() {
 		ctx.beginPath();
 		ctx.moveTo(-15, -3);
 		ctx.lineTo(-15, 3);
-		ctx.lineTo(clockRadius * 0.7, 1);
-		ctx.lineTo(clockRadius * 0.7, -1);
-		ctx.fillStyle = "#0f0";
+		ctx.lineTo(clockRadius * 0.6, 1);
+		ctx.lineTo(clockRadius * 0.6, -1);
+		ctx.fillStyle = "#ED143D";
 		ctx.fill();
 		ctx.restore();
 		ctx.restore();
